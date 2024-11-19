@@ -1,11 +1,11 @@
-export const name = {
+export const idNo = {
   meta: {
-    title: '姓名',
-    description: '姓名',
-    type: 'name'
+    title: '证件号码',
+    description: '证件号码',
+    type: 'idNo'
   },
   data: {
-    content: '姓名',
+    content: '证件号码',
     color: '#000',
     size: '16',
     top: '0',
@@ -49,15 +49,15 @@ export const name = {
         ]
       },
       {
-        label: 'top位置',
-        type: 'input',
-        key: 'top'
+        label:'top位置',
+        type:'input',
+        key:'top'
       },
       {
-        label: 'left位置',
-        type: 'input',
-        key: 'left'
+        label:'left位置',
+        type:'input',
+        key:'left'
       }
     ]
-  }
+  },
 }

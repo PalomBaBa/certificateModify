@@ -21,10 +21,8 @@ let propertiesData = reactive(props.data.data);
 
 <template>
   <div class="content"
-    :style="{ color: propertiesData.color, fontSize: propertiesData.size + 'px',  fontWeight: propertiesData.weight }">
+    :style="{ color: propertiesData.color, fontSize: propertiesData.size + 'px', top: propertiesData.top + 'px', left: propertiesData.left + 'px', fontWeight: propertiesData.weight }">
     {{ propertiesData.content }}</div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,11 +1,10 @@
 <script setup>
 import componentData from '../dataManage/component/data/index'
-import { VueDraggable } from 'vue-draggable-plus'
+console.log('componentData: ', componentData);
 import useGlobal from '@/hooks/useGlobal';
 
 
 const { subscribe } = new useGlobal()
-console.log('subscribe: ', subscribe);
 
 
 const handleComponentClick = (item) => {
@@ -14,19 +13,29 @@ const handleComponentClick = (item) => {
   subscribe.emit('componentClick', tempData)
 }
 
-const onClone = () => {
-  console.log(111);
-}
 </script>
 
 <template>
-  <div>
-
-    <div @click="handleComponentClick(item)" v-for="item in componentData" :key="item.id"
-      class="cursor-move h-50px bg-gray-500/5 rounded p-3">
+  <div class="componentListArea">
+    <div @click="handleComponentClick(item)" v-for="(item, index) in componentData" :key="item.id" class="componentListItem"
+      :style="{ marginBottom: index + 1 !== componentData.length ? '10px' : '0' }">
       {{ item.meta.title }}
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.componentListArea {
+  padding: 16px;
+
+  .componentListItem {
+    cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+</style>

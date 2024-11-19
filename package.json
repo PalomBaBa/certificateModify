@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "element-plus": "^2.8.8",
+    "html2canvas": "^1.4.1",
     "sass": "^1.81.0",
     "vue": "^3.5.12",
-    "vue-draggable-plus": "^0.6.0",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
