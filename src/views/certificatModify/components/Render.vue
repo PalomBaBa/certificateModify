@@ -1,6 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+import { ref , onMounted } from 'vue';
 import useGlobal from '@/hooks/useGlobal';
+import backgroundData from '../dataManage/component/data/background'
+
+
+const backgroundComponentData = ref(backgroundData)
+console.log('backgroundComponentData: ', backgroundComponentData.value);
 
 const platform = 'pc'
 
@@ -16,6 +21,12 @@ subscribe.on('componentClick', (data) => {
   componentList.value.push(data)
   // handleLastStep();
 });
+
+
+
+onMounted(()=>{
+  subscribe.emit('backgroundInit', backgroundComponentData.value);
+})
 
 
 const handleRenderComponentClick = (item) => {
@@ -47,7 +58,7 @@ const handleRenderComponentClick = (item) => {
         if (item.data.top < 0) {
           item.data.top = 0;
         }
-        
+
         // +2边框宽度
         if (item.data.left > container.clientWidth - (dom.clientWidth + 2)) {
           item.data.left = container.clientWidth - (dom.clientWidth + 2);
@@ -84,16 +95,20 @@ const deleteComponent = (data) => {
 
 <template>
   <div class="renderComponent">
-    <div @click="handleRenderComponentClick(item)" :class="{ activated: item.data.key === activatedKey }"
-      class="componentItem" :style="{ top: item.data.top + 'px', left: item.data.left + 'px', }" :id="item.data.key"
-      v-for="item in componentList" :key="item.id">
-      <el-popover placement="right" :width="100" trigger="click">
-        <el-button type="primary" text style="width: 100%;" @click="deleteComponent(item)">删除</el-button>
-        <template #reference>
-          <component :is="`${platform}-${item.meta.type}`" :data="item" />
-        </template>
-      </el-popover>
-    </div>
+    <component :is="'pc-background'" :data="backgroundComponentData">
+      <template #backgroundSlot>
+        <div @click="handleRenderComponentClick(item)" :class="{ activated: item.data.key === activatedKey }"
+          class="componentItem" :style="{ top: item.data.top + 'px', left: item.data.left + 'px', }" :id="item.data.key"
+          v-for="item in componentList" :key="item.id">
+          <el-popover placement="right" :width="100" trigger="click">
+            <el-button type="primary" text style="width: 100%;" @click="deleteComponent(item)">删除</el-button>
+            <template #reference>
+              <component :is="`${platform}-${item.meta.type}`" :data="item" />
+            </template>
+          </el-popover>
+        </div>
+      </template>
+    </component>
   </div>
 </template>
 
