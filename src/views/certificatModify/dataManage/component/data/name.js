@@ -2,9 +2,10 @@ export const name = {
   meta: {
     title: '姓名',
     description: '姓名',
-    type: 'name'
+    type: 'name',
   },
   data: {
+    key: 'name_123',
     content: '姓名',
     color: '#000',
     size: '16',

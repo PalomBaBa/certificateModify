@@ -2,9 +2,11 @@ export const idNo = {
   meta: {
     title: '证件号码',
     description: '证件号码',
-    type: 'idNo'
+    type: 'idNo',
+    
   },
   data: {
+    key: 'idNo_123',
     content: '证件号码',
     color: '#000',
     size: '16',
